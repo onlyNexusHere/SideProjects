@@ -24,10 +24,6 @@ function newScala {
 
 	name=$1;
 	projFolder=${2:-'./'};
-# 	if [ $1=='-h' ]; then     # this part is in the works, one day it will be ready
-# 		echo "This command will make a new homework folder for CS220, in the appropriate place. 
-# Please enter in 'newHW (name of file) ' ";
-# 	else
 	cd $projFolder;
 	mkdir $name;
 	cd $name;
@@ -41,25 +37,9 @@ function newScala {
 	subl src/main/scala/$name.scala src/test/scala/${name}Test.scala project/plugins.sbt build.sbt;
 	read -p "Edit and save plugins.sbt and build.sbt. Press [Enter] key to start backup...\n"
 	sbt;
-# 	fi;
  }
-function addTimes {
-	filename=~/internetTimes.csv
-	echo "start" > $filename
-	i=0
-	#total seconds in a day:
-	#j=86400
-	j=10
+ 
+# this is to remember for later. 
+# defaults write com.apple.finder AppleShowAllFiles YES; killall Finder
 
-	refresh=1
-	
-	while [ $i -lt $j ]  
-	do 
-	i=$[$i+$refresh]
-	echo $(ping -c 1 google.com | grep -o "time=\d\+.\d\{3\} ms" | grep -o "\d\+.\d\{3\}" ) "ms," $(date +%a) ", " >> $filename
-	sleep $refresh
-	done
-}
-# this is to remember for later.
-# defaults write com.apple.finder AppleShowAllFiles YES
 export PS1="\j \# (\W) \$"
